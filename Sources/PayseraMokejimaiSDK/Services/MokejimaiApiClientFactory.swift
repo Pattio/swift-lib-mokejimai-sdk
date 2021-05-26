@@ -1,4 +1,5 @@
 import Alamofire
+import Foundation
 import PayseraCommonSDK
 
 public class MokejimaiApiClientFactory {
@@ -6,11 +7,12 @@ public class MokejimaiApiClientFactory {
         headers: PSRequestHeaders,
         credentials: PSApiJWTCredentials,
         tokenRefresher: PSTokenRefresherProtocol? = nil,
-        logger: PSLoggerProtocol? = nil
+        logger: PSLoggerProtocol? = nil,
+        configure: ((URLSessionConfiguration) -> Void)? = nil
     ) -> MokejimaiApiClient {
         let interceptor = PSRequestAdapter(credentials: credentials, headers: headers)
         let session = Session(interceptor: interceptor)
-        session.sessionConfiguration.httpShouldSetCookies = false
+        configure?(session.sessionConfiguration)
         
         return MokejimaiApiClient(
             session: session,
