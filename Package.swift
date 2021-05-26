@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "PayseraMokejimaiSDK", targets: ["PayseraMokejimaiSDK"]),
     ],
     dependencies: [
-        .package(name: "PayseraCommonSDK", url: "https://github.com/paysera/swift-lib-common-sdk", from: "4.0.0")
+        .package(name: "PayseraCommonSDK", url: "https://github.com/Pattio/swift-lib-common-sdk", .branch("APPIOS-2671"))
     ],
     targets: [
         .target(
