@@ -10,6 +10,7 @@ public class MokejimaiApiClientFactory {
     ) -> MokejimaiApiClient {
         let interceptor = PSRequestAdapter(credentials: credentials, headers: headers)
         let session = Session(interceptor: interceptor)
+        session.sessionConfiguration.httpShouldSetCookies = false
         
         return MokejimaiApiClient(
             session: session,
